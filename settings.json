@@ -2,7 +2,7 @@
     "build": {
         "build_directory": "${CMAKE_BINARY_DIR}",
         "source_directories": [
-            "${CMAKE_SOURCE_DIR}/sigma-engine/resources",
+            "${CMAKE_SOURCE_DIR}/sigma-core/resources",
             "${CMAKE_SOURCE_DIR}/simple-game/resources",
             "${CMAKE_BINARY_DIR}/shaders"
         ]
