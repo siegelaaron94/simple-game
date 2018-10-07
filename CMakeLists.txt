@@ -13,6 +13,8 @@ target_link_libraries(simple-game PUBLIC sigma-core sigma-opengl SDL2::SDL2 Assi
 
 target_package_resources(simple-game resources)
 
+add_dependencies(simple-game sigma-opengl-resources simple-game-resources)
+
 if(COTIRE_CMAKE_MODULE_VERSION)
   cotire(simple-game)
 endif()

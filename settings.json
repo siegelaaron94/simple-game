@@ -8,8 +8,8 @@
         ]
     },
     "render": {
-        "enable_image_based_lighting": true,
-        "enable_debug_rendering": false,
+        "enable_image_based_lighting": false,
+        "enable_debug_rendering": true,
         "image_based_light_effect": "post_process_effect/pbr/deffered/lights/image_based",
         "point_light_effect": "post_process_effect/pbr/deffered/lights/point",
         "directional_light_effect": "post_process_effect/pbr/deffered/lights/directional",
@@ -23,6 +23,7 @@
         }
     },
     "level": {
-        "current_level_blueprint": "blueprint/proprietary/sponza/sponza"
+        "current_level_blueprint": "blueprint/material_test_scene"
+        /*"current_level_blueprint": "blueprint/proprietary/sponza/sponza"*/
     }
 }

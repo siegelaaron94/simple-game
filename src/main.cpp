@@ -8,18 +8,12 @@
 #include <sigma/util/type_sequence.hpp>
 #include <sigma/window.hpp>
 
-#include <sigma/tools/cubemap_loader.hpp>
-#include <sigma/tools/material_loader.hpp>
-#include <sigma/tools/model_loader.hpp>
-#include <sigma/tools/packager.hpp>
-#include <sigma/tools/post_process_effect_loader.hpp>
-#include <sigma/tools/shader_loader.hpp>
-#include <sigma/tools/technique_loader.hpp>
-#include <sigma/tools/texture_loader.hpp>
-
 #include <SDL2/SDL.h>
 
+#include <boost/filesystem/operations.hpp>
+
 #include <iostream>
+#include <memory>
 
 int main(int argc, char* argv[])
 {
@@ -27,23 +21,13 @@ int main(int argc, char* argv[])
     if (!boost::filesystem::exists(cache_path))
         cache_path = boost::filesystem::current_path() / ".." / "data";
 
-    simple_context context{ cache_path };
-
-    sigma::tools::packager<simple_context> packager{ context };
-    packager.add_loader<sigma::tools::texture_loader<simple_context>>();
-    packager.add_loader<sigma::tools::cubemap_loader<simple_context>>();
-    packager.add_loader<sigma::tools::shader_loader<simple_context>>();
-    packager.add_loader<sigma::tools::technique_loader<simple_context>>();
-    packager.add_loader<sigma::tools::material_loader<simple_context>>();
-    packager.add_loader<sigma::tools::model_loader<simple_context, simple_component_set>>();
-    packager.add_loader<sigma::tools::post_process_effect_loader<simple_context>>();
-    packager.scan();
+    auto context = std::make_shared<sigma::context>(cache_path);
 
     sigma::window window{ glm::ivec2{ 1920, 1080 } };
 
-    auto game = std::make_unique<simple_game>(context);
+    auto game = std::make_shared<simple_game>(context);
 
-    auto renderer = std::make_unique<sigma::opengl::renderer>(window.size(), context);
+    auto renderer = std::make_shared<sigma::opengl::renderer>(window.size(), context);
     sigma::opengl::renderer::world_view_type render_view{ game->world() };
 
     sigma::graphics::view_port viewport{
@@ -75,7 +59,7 @@ int main(int argc, char* argv[])
 
         if (renderer && game) {
             SDL_GL_MakeCurrent(window.window_, window.gl_context_);
-            renderer->render(viewport, render_view);
+            renderer->render(render_view);
             game->update(std::chrono::duration_cast<std::chrono::duration<float>>(dt));
         }
 
@@ -108,7 +92,7 @@ int main(int argc, char* argv[])
                     renderer = nullptr;
                     window.close();
                 } else if (event.key.keysym.sym == SDLK_f) {
-                    renderer->save_frustums = true;
+                    // renderer->save_frustums = true;
                 }
                 if (!controller.isPanning())
                     controller.beginPan();

@@ -7,9 +7,10 @@
 #include <chrono>
 #include <cmath>
 
-simple_game::simple_game(simple_context& ctx)
+simple_game::simple_game(std::shared_ptr<sigma::context> ctx)
 {
-    auto blueprint = ctx.get_cache<simple_blueprint>().acquire(ctx.get_settings<simple_level_settings>().current_level_blueprint);
+    /*
+    auto blueprint = ctx.cache<simple_blueprint>()->acquire(ctx.get_settings<simple_level_settings>().current_level_blueprint);
     instantiate(blueprint);
 
     world_.for_each<sigma::transform, grid_component>([&](sigma::entity e, const sigma::transform& txform, const grid_component& grid) {
@@ -21,6 +22,7 @@ simple_game::simple_game(simple_context& ctx)
             }
         }
     });
+    */
 }
 
 void simple_game::update(std::chrono::duration<float> dt)
