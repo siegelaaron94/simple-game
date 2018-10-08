@@ -23,14 +23,14 @@ int main(int argc, char* argv[])
 
     auto context = std::make_shared<sigma::context>(cache_path);
 
-    sigma::window window{ glm::ivec2{ 1920, 1080 } };
+    sigma::window window { glm::ivec2 { 1920, 1080 } };
 
     auto game = std::make_shared<simple_game>(context);
 
     auto renderer = std::make_shared<sigma::opengl::renderer>(window.size(), context);
-    sigma::opengl::renderer::world_view_type render_view{ game->world() };
+    sigma::opengl::renderer::world_view_type render_view { game->world() };
 
-    sigma::graphics::view_port viewport{
+    sigma::graphics::view_port viewport {
         window.size(),
         sigma::frustum(0.785398f, (float)window.size().x / (float)window.size().y, 0.1f, 50.0f)
     };
