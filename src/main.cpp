@@ -10,16 +10,15 @@
 
 #include <SDL2/SDL.h>
 
-#include <boost/filesystem/operations.hpp>
-
+#include <filesystem>
 #include <iostream>
 #include <memory>
 
 int main(int argc, char* argv[])
 {
-    auto cache_path = boost::filesystem::current_path() / "data";
-    if (!boost::filesystem::exists(cache_path))
-        cache_path = boost::filesystem::current_path() / ".." / "data";
+    auto cache_path = std::filesystem::current_path() / "data";
+    if (!std::filesystem::exists(cache_path))
+        cache_path = std::filesystem::current_path() / ".." / "data";
 
     auto context = std::make_shared<sigma::context>(cache_path);
 
