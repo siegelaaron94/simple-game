@@ -30,9 +30,7 @@ using simple_blueprint = sigma::blueprint<simple_component_set>;
 
 struct simple_level_settings {
     static constexpr const char* GROUP = "level";
-
-    BOOST_HANA_DEFINE_STRUCT(simple_level_settings,
-        (std::shared_ptr<simple_blueprint>, current_level_blueprint));
+    std::shared_ptr<simple_blueprint> current_level_blueprint;
 };
 
 class simple_game : public sigma::game<simple_world> {

@@ -3,16 +3,13 @@
 
 #include <sigma/component.hpp>
 #include <sigma/graphics/static_mesh.hpp>
-#include <sigma/reflect.hpp>
 
 struct grid_component {
-    BOOST_HANA_DEFINE_STRUCT(
-        grid_component,
-        (int, rows),
-        (int, columns),
-        (float, row_spacing),
-        (float, column_spacing),
-        (std::shared_ptr<sigma::graphics::static_mesh>, mesh));
+    int rows;
+    int columns;
+    float row_spacing;
+    float column_spacing;
+    std::shared_ptr<sigma::graphics::static_mesh> mesh;
 
     grid_component(int rows = 0, int columns = 0,
         float row_spacing = 0, float column_spacing = 0,

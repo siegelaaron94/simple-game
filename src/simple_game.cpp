@@ -2,27 +2,23 @@
 
 #include <sigma/world.hpp>
 
-#include <boost/math/constants/constants.hpp>
-
 #include <chrono>
 #include <cmath>
 
 simple_game::simple_game(std::shared_ptr<sigma::context> ctx)
 {
-    /*
-    auto blueprint = ctx.cache<simple_blueprint>()->acquire(ctx.get_settings<simple_level_settings>().current_level_blueprint);
+    /*auto blueprint = ctx->cache<simple_blueprint>()->acquire(ctx->get_settings<simple_level_settings>().current_level_blueprint);
     instantiate(blueprint);
 
     world_.for_each<sigma::transform, grid_component>([&](sigma::entity e, const sigma::transform& txform, const grid_component& grid) {
         for (int x = 0; x < grid.rows; ++x) {
             for (int z = 0; z < grid.columns; ++z) {
                 auto e = world_.create();
-                world_.add<sigma::transform>(e, txform.position + glm::vec3{ grid.row_spacing * x, 0, grid.column_spacing * z }, txform.rotation, txform.scale);
+                world_.add<sigma::transform>(e, txform.position + glm::vec3 { grid.row_spacing * x, 0, grid.column_spacing * z }, txform.rotation, txform.scale);
                 world_.add<sigma::graphics::static_mesh_instance>(e, grid.mesh);
             }
         }
-    });
-    */
+    });*/
 }
 
 void simple_game::update(std::chrono::duration<float> dt)
