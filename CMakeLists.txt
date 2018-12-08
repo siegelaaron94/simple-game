@@ -9,7 +9,7 @@ add_executable(simple-game
 )
 
 target_include_directories(simple-game PUBLIC include)
-target_link_libraries(simple-game PUBLIC sigma-core sigma-opengl SDL2::SDL2 Assimp::assimp)
+target_link_libraries(simple-game PUBLIC sigma-core sigma-opengl SDL2::SDL2)
 
 if(COTIRE_CMAKE_MODULE_VERSION)
     cotire(simple-game)
