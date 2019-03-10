@@ -3,7 +3,6 @@
 
 #include <grid_component.hpp>
 
-#include <sigma/blueprint.hpp>
 #include <sigma/context.hpp>
 #include <sigma/game.hpp>
 #include <sigma/graphics/directional_light.hpp>
@@ -13,27 +12,14 @@
 #include <sigma/graphics/spot_light.hpp>
 #include <sigma/graphics/static_mesh_instance.hpp>
 #include <sigma/transform.hpp>
-#include <sigma/world.hpp>
 
 #include <glm/vec3.hpp>
 
-using simple_component_set = sigma::component_set<sigma::transform,
-    sigma::graphics::directional_light,
-    sigma::graphics::point_light,
-    sigma::graphics::spot_light,
-    sigma::graphics::static_mesh_instance,
-    grid_component>;
-
-using simple_world = sigma::world<simple_component_set>;
-
-using simple_blueprint = sigma::blueprint<simple_component_set>;
-
 struct simple_level_settings {
     static constexpr const char* GROUP = "level";
-    std::shared_ptr<simple_blueprint> current_level_blueprint;
 };
 
-class simple_game : public sigma::game<simple_world> {
+class simple_game : public sigma::game {
 public:
     simple_game(std::shared_ptr<sigma::context> ctx);
 

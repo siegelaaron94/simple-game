@@ -4,6 +4,8 @@ project(simple-game)
 configure_file(settings.json ${CMAKE_BINARY_DIR}/data/settings.json)
 
 add_executable(simple-game
+    include/grid_component.hpp
+    include/simple_game.hpp
     src/main.cpp
     src/simple_game.cpp
 )

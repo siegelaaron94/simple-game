@@ -1,7 +1,6 @@
 #ifndef GRID_COMPONENT_HPP
 #define GRID_COMPONENT_HPP
 
-#include <sigma/component.hpp>
 #include <sigma/graphics/static_mesh.hpp>
 
 struct grid_component {
@@ -21,7 +20,5 @@ struct grid_component {
     {
     }
 };
-
-REGISTER_COMPONENT(grid_component)
 
 #endif // GRID_COMPONENT_HPP

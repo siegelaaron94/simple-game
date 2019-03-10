@@ -1,7 +1,5 @@
 #include "simple_game.hpp"
 
-#include <sigma/world.hpp>
-
 #include <chrono>
 #include <cmath>
 
@@ -29,7 +27,7 @@ void simple_game::update(std::chrono::duration<float> dt)
     //     txform.position.y += std::cos(elapsed.count()) * dt.count();
     // });
 
-    world_.for_each<sigma::transform>([&](sigma::entity e, sigma::transform& txform) {
+    /*world_.for_each<sigma::transform>([&](sigma::entity e, sigma::transform& txform) {
         txform.matrix = txform.get_matrix();
     });
 
@@ -41,5 +39,5 @@ void simple_game::update(std::chrono::duration<float> dt)
     world_.for_each<sigma::transform, sigma::graphics::spot_light>([&](sigma::entity e, const sigma::transform& txform, sigma::graphics::spot_light& light) {
         light.direction = glm::normalize(glm::vec3(txform.matrix * glm::vec4(0, 1, 0, 0)));
         light.shadow_frustum.set_projection_view(2.5f * light.cutoff, 1.0f, 0.01f, 50.0f, glm::lookAt(txform.position, txform.position - light.direction, glm::vec3 { 0.0f, 1.0f, 0.0f }));
-    });
+    });*/
 }
