@@ -24,9 +24,8 @@ int main(int argc, char* argv[])
 
     sigma::window window { glm::ivec2 { 1920, 1080 } };
 
-    auto game = std::make_shared<simple_game>(context);
-
     auto renderer = std::make_shared<sigma::opengl::renderer>(window.size(), context);
+    auto game = std::make_shared<simple_game>(context, renderer->queue());
 
     sigma::graphics::view_port viewport {
         window.size(),
@@ -57,8 +56,8 @@ int main(int argc, char* argv[])
 
         if (renderer && game) {
             SDL_GL_MakeCurrent(window.window_, window.gl_context_);
-            renderer->render(game->registry());
-            game->update(std::chrono::duration_cast<std::chrono::duration<float>>(dt));
+            renderer->render();
+            game->update(viewport, std::chrono::duration_cast<std::chrono::duration<float>>(dt));
         }
 
         SDL_Event event;

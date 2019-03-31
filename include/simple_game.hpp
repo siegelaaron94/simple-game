@@ -21,9 +21,12 @@ struct simple_level_settings {
 
 class simple_game : public sigma::game {
 public:
-    simple_game(std::shared_ptr<sigma::context> ctx);
+    simple_game(std::shared_ptr<sigma::context> ctx, sigma::graphics::render_queue* queue);
 
-    virtual void update(std::chrono::duration<float> dt) override;
+    virtual void update(const sigma::graphics::view_port &viewport, std::chrono::duration<float> dt) override;
+
+private:
+    sigma::graphics::render_queue* queue_ = nullptr;
 };
 
 #endif // SIMPLE_GAME_HPP
